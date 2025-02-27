@@ -113,7 +113,7 @@ export default function IncomeForm() {
         </Popover>
 
         <SubmitButton
-          text="Create Income"
+          text="Add Income"
           icon={<PlusIcon className="size-5" />}
         />
       </div>

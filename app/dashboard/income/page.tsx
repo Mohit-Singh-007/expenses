@@ -1,6 +1,6 @@
+import IncomeDialog from "@/app/_components/Dashboard/Income/IncomeDialog";
 import IncomeList from "@/app/_components/Dashboard/Income/IncomeList";
 import { auth } from "@/auth";
-import { buttonVariants } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -9,8 +9,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { getUserIncome } from "@/utils/actions";
-import { PlusCircleIcon } from "lucide-react";
-import Link from "next/link";
 
 export default async function page() {
   const session = await auth();
@@ -24,13 +22,7 @@ export default async function page() {
             <CardTitle className="text-2xl">Your Income/s</CardTitle>
             <CardDescription>Manage your income here...</CardDescription>
           </div>
-          <Link
-            href={"/dashboard/expenses/create-expense"}
-            className={buttonVariants()}
-          >
-            <PlusCircleIcon />
-            <span>Create Income</span>
-          </Link>
+          <IncomeDialog />
         </div>
       </CardHeader>
       <CardContent>
@@ -46,13 +38,7 @@ export default async function page() {
         </CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col items-center">
-        <Link
-          href={"/dashboard/expenses/create-expense"}
-          className={buttonVariants({ variant: "outline" })}
-        >
-          <PlusCircleIcon className="mr-2" />
-          Add Your First Income
-        </Link>
+        <IncomeDialog />
       </CardContent>
     </Card>
   );
