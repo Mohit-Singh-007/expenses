@@ -1,4 +1,3 @@
-import { auth } from "@/auth";
 import { Badge } from "@/components/ui/badge";
 import {
   Table,
@@ -8,13 +7,23 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { getUserExpenses } from "@/utils/actions";
+
 import ExpenseActions from "./ExpenseActions";
 
-export default async function AllExpensesList() {
-  const session = await auth();
-  const data = await getUserExpenses(session?.user?.id as string);
+interface iExpense {
+  createdAt: Date;
+  expenseName: string;
+  expenseNumber: number;
+  amount: number;
+  category: "FOOD" | "HOUSE" | "MEDICAL" | "SELFCARE";
+  date: Date;
+}
 
+export default async function AllExpensesList({
+  expenses,
+}: {
+  expenses: iExpense[];
+}) {
   return (
     <Table>
       <TableHeader>
@@ -28,7 +37,7 @@ export default async function AllExpensesList() {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {data.map((expense) => (
+        {expenses.map((expense) => (
           <TableRow key={expense.expenseNumber}>
             <TableCell>#{expense.expenseNumber}</TableCell>
             <TableCell>{expense.expenseName}</TableCell>

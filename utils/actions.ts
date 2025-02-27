@@ -83,3 +83,21 @@ export async function createIncome(prevState: unknown, formData: FormData) {
 
   return redirect("/dashboard/income");
 }
+
+export async function getUserIncome(userId: string) {
+  const userIncome = await prisma.income.findMany({
+    where: {
+      userId: userId,
+    },
+    select: {
+      source: true,
+      date: true,
+      incomeMoney: true,
+      id: true,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+  return userIncome;
+}
