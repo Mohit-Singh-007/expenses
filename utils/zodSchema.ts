@@ -9,3 +9,17 @@ export const expenseSchema = z.object({
   description: z.string().optional(),
   date: z.string().min(1, "  Date must be provided"),
 });
+
+export const incomeSchema = z.object({
+  incomeMoney: z.number().min(1, " Income must be greater than 0"),
+  source: z.enum([
+    "SALARY",
+    "FREELANCE",
+    "BUSINESS",
+    "INVESTMENT",
+    "GIFTS",
+    "OTHERS",
+  ]),
+  notes: z.string().optional(),
+  date: z.string().min(1, "  Date must be provided"),
+});

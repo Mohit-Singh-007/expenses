@@ -21,7 +21,7 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { Calendar1Icon, PlusCircleIcon } from "lucide-react";
 import { useActionState, useState } from "react";
-import SubmitButton from "../Login/SubmitButton";
+import SubmitButton from "../../Login/SubmitButton";
 import { createExpense } from "@/utils/actions";
 import { parseWithZod } from "@conform-to/zod";
 import { expenseSchema } from "@/utils/zodSchema";

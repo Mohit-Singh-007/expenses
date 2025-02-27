@@ -10,7 +10,7 @@ export default async function layout({
   const session = await auth();
 
   if (!session?.user) {
-    redirect("/sign-up");
+    redirect("/sign-in");
   }
 
   return (

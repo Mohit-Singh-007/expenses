@@ -3,7 +3,7 @@
 import { auth } from "@/auth";
 import { prisma } from "./prisma";
 import { parseWithZod } from "@conform-to/zod";
-import { expenseSchema } from "./zodSchema";
+import { expenseSchema, incomeSchema } from "./zodSchema";
 import { redirect } from "next/navigation";
 
 export async function getUserExpenses(userId: string) {
@@ -55,4 +55,31 @@ export async function createExpense(prevState: unknown, formData: FormData) {
   });
 
   return redirect("/dashboard/expenses");
+}
+
+export async function createIncome(prevState: unknown, formData: FormData) {
+  const session = await auth();
+  if (!session?.user) {
+    throw new Error("Unauthorized user");
+  }
+
+  const submission = parseWithZod(formData, {
+    schema: incomeSchema,
+  });
+
+  if (submission.status !== "success") {
+    return submission.reply();
+  }
+
+  await prisma.income.create({
+    data: {
+      incomeMoney: submission.value.incomeMoney,
+      source: submission.value.source,
+      date: submission.value.date, // string
+      notes: submission.value.notes,
+      userId: session.user.id as string, // Add the user ID
+    },
+  });
+
+  return redirect("/dashboard/income");
 }

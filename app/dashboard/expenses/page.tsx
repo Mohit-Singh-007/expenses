@@ -1,4 +1,4 @@
-import AllExpensesList from "@/app/_components/Dashboard/AllExpensesList";
+import AllExpensesList from "@/app/_components/Dashboard/Expenses/AllExpensesList";
 import { buttonVariants } from "@/components/ui/button";
 import {
   Card,
