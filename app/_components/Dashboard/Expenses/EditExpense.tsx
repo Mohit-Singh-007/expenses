@@ -1,16 +1,11 @@
 "use client";
-import { useForm } from "@conform-to/react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+import { Popover, PopoverTrigger } from "@/components/ui/popover";
 import {
   Select,
   SelectContent,
@@ -19,21 +14,19 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { PopoverContent } from "@radix-ui/react-popover";
 import { Calendar1Icon, PlusCircleIcon } from "lucide-react";
-import { useActionState, useState } from "react";
 import SubmitButton from "../../Login/SubmitButton";
-import { createExpense } from "@/utils/actions";
+import { useActionState, useState } from "react";
+import { useForm } from "@conform-to/react";
 import { parseWithZod } from "@conform-to/zod";
 import { expenseSchema } from "@/utils/zodSchema";
+import { editExpense } from "@/utils/actions";
+import { iEditExpense } from "@/utils/types";
 
-interface iDetails {
-  name: string;
-  email: string;
-}
-
-export default function ExpenseForm({ email, name }: iDetails) {
+export default function EditExpense({ data }: { data: iEditExpense }) {
   const [lastResult, createExpenseAction] = useActionState(
-    createExpense,
+    editExpense,
     undefined
   );
   const [form, fields] = useForm({
@@ -47,10 +40,10 @@ export default function ExpenseForm({ email, name }: iDetails) {
     shouldRevalidate: "onInput",
   });
 
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(data.date);
 
   return (
-    <Card className="w-full mx-auto max-w-5xl">
+    <Card className="w-full mx-auto max-w-5xl mt-10">
       <CardContent className="p-6">
         <form
           action={createExpenseAction}
@@ -58,6 +51,7 @@ export default function ExpenseForm({ email, name }: iDetails) {
           onSubmit={form.onSubmit}
           noValidate
         >
+          <input type="hidden" name="id" value={data.id} />
           <input
             type="hidden"
             name={fields.date.name}
@@ -70,7 +64,7 @@ export default function ExpenseForm({ email, name }: iDetails) {
               <Input
                 name={fields.expenseName.name}
                 key={fields.expenseName.key}
-                defaultValue={fields.expenseName.initialValue}
+                defaultValue={data.expenseName}
                 placeholder="Expense name..."
               />
             </div>
@@ -86,7 +80,7 @@ export default function ExpenseForm({ email, name }: iDetails) {
                 <Input
                   name={fields.expenseNumber.name}
                   key={fields.expenseNumber.key}
-                  defaultValue={fields.expenseNumber.initialValue}
+                  defaultValue={data.expenseNumber}
                   placeholder="Expense Num..."
                   className="rounded-l-none"
                 />
@@ -99,7 +93,7 @@ export default function ExpenseForm({ email, name }: iDetails) {
             <div>
               <Label>Category</Label>
               <Select
-                defaultValue="SELFCARE"
+                defaultValue={data.category}
                 name={fields.category.name}
                 key={fields.category.key}
               >
@@ -126,8 +120,7 @@ export default function ExpenseForm({ email, name }: iDetails) {
                 <Input
                   name={fields.username.name}
                   key={fields.username.key}
-                  defaultValue={name}
-                  disabled
+                  defaultValue={data.username}
                   placeholder="Username..."
                 />
                 <p className=" text-sm text-red-400 ">
@@ -136,8 +129,7 @@ export default function ExpenseForm({ email, name }: iDetails) {
 
                 <Input
                   name={fields.email.name}
-                  defaultValue={email}
-                  disabled
+                  defaultValue={data.email}
                   key={fields.email.key}
                   placeholder="Email..."
                 />
@@ -151,7 +143,7 @@ export default function ExpenseForm({ email, name }: iDetails) {
                 <Input
                   name={fields.amount.name}
                   key={fields.amount.key}
-                  defaultValue={fields.amount.initialValue}
+                  defaultValue={data.amount}
                   placeholder="Amount..."
                   type="number"
                 />
@@ -197,7 +189,7 @@ export default function ExpenseForm({ email, name }: iDetails) {
               <Textarea
                 name={fields.description.name}
                 key={fields.description.key}
-                defaultValue={fields.description.initialValue}
+                defaultValue={data.description ?? undefined}
                 placeholder="(optional)Add your Note/s here...."
               />
               <p className="text-sm text-red-400">
@@ -208,7 +200,7 @@ export default function ExpenseForm({ email, name }: iDetails) {
 
           <div className="flex items-center justify-center mt-10">
             <SubmitButton
-              text="Create Expense"
+              text="Update Expense"
               icon={<PlusCircleIcon className="size-5" />}
             />
           </div>

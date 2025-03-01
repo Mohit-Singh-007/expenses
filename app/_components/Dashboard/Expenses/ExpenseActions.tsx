@@ -8,7 +8,11 @@ import {
 import { MoreHorizontal, Pencil, Trash } from "lucide-react";
 import Link from "next/link";
 
-export default function ExpenseActions() {
+interface iAppProps {
+  id: string;
+}
+
+export default function ExpenseActions({ id }: iAppProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -19,7 +23,7 @@ export default function ExpenseActions() {
       <DropdownMenuContent align="end">
         <DropdownMenuItem>
           <Pencil className="size-4 mr-2" />
-          <Link href={""}>Edit</Link>
+          <Link href={`/dashboard/expenses/${id}/`}>Edit</Link>
         </DropdownMenuItem>
         <DropdownMenuItem>
           <Trash className="size-4 mr-2" />

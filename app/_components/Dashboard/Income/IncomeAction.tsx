@@ -19,11 +19,11 @@ export default function IncomeAction() {
       <DropdownMenuContent align="end">
         <DropdownMenuItem>
           <Pencil className="size-4 mr-2" />
-          <Link href={""}>Edit</Link>
+          <Link href={"/dashboard/income/edit"}>Edit</Link>
         </DropdownMenuItem>
         <DropdownMenuItem>
           <Trash className="size-4 mr-2" />
-          <Link href={""}>Delete</Link>
+          <Link href={"/dashboard/income/delete"}>Delete</Link>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

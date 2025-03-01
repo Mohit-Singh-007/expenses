@@ -4,7 +4,7 @@ import { auth } from "@/auth";
 import { prisma } from "./prisma";
 import { parseWithZod } from "@conform-to/zod";
 import { expenseSchema, incomeSchema } from "./zodSchema";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 export async function getUserExpenses(userId: string) {
   const data = await prisma.expense.findMany({
@@ -12,6 +12,7 @@ export async function getUserExpenses(userId: string) {
       userId: userId,
     },
     select: {
+      id: true,
       expenseNumber: true,
       expenseName: true,
       amount: true,
@@ -23,6 +24,45 @@ export async function getUserExpenses(userId: string) {
       createdAt: "desc",
     },
   });
+  return data;
+}
+
+export async function getUserDetail(userId: string) {
+  const data = await prisma.user.findUnique({
+    where: {
+      id: userId,
+    },
+    select: {
+      email: true,
+      name: true,
+    },
+  });
+  return data;
+}
+
+export async function getExpenseById(userId: string, expenseId: string) {
+  const data = await prisma.expense.findUnique({
+    where: {
+      id: expenseId,
+      userId: userId,
+    },
+    select: {
+      id: true,
+      expenseNumber: true,
+      expenseName: true,
+      amount: true,
+      date: true,
+      category: true,
+      createdAt: true,
+      description: true,
+      username: true,
+      email: true,
+    },
+  });
+
+  if (!data) {
+    return notFound();
+  }
   return data;
 }
 
@@ -51,6 +91,37 @@ export async function createExpense(prevState: unknown, formData: FormData) {
       description: submission.value.description,
       category: submission.value.category,
       userId: session.user.id, // Add the user ID
+    },
+  });
+
+  return redirect("/dashboard/expenses");
+}
+
+export async function editExpense(prevState: unknown, formData: FormData) {
+  const session = await auth();
+
+  const submission = parseWithZod(formData, {
+    schema: expenseSchema,
+  });
+
+  if (submission.status !== "success") {
+    return submission.reply();
+  }
+
+  await prisma.expense.update({
+    where: {
+      id: formData.get("id") as string,
+      userId: session?.user?.id,
+    },
+    data: {
+      expenseNumber: submission.value.expenseNumber,
+      expenseName: submission.value.expenseName,
+      username: submission.value.username,
+      email: submission.value.email,
+      amount: submission.value.amount,
+      date: submission.value.date, // string
+      description: submission.value.description,
+      category: submission.value.category,
     },
   });
 
@@ -100,4 +171,17 @@ export async function getUserIncome(userId: string) {
     },
   });
   return userIncome;
+}
+
+export async function deleteUserIncome(incomeId: string) {
+  const session = await auth();
+  if (!session?.user) {
+    throw new Error("Unauthorized user");
+  }
+
+  await prisma.income.delete({
+    where: {
+      id: incomeId,
+    },
+  });
 }

@@ -9,15 +9,7 @@ import {
 } from "@/components/ui/table";
 
 import ExpenseActions from "./ExpenseActions";
-
-interface iExpense {
-  createdAt: Date;
-  expenseName: string;
-  expenseNumber: number;
-  amount: number;
-  category: "FOOD" | "HOUSE" | "MEDICAL" | "SELFCARE";
-  date: Date;
-}
+import { iExpense } from "@/utils/types";
 
 export default async function AllExpensesList({
   expenses,
@@ -51,7 +43,7 @@ export default async function AllExpensesList({
             </TableCell>
             <TableCell>{expense.amount}</TableCell>
             <TableCell className="text-right">
-              <ExpenseActions />
+              <ExpenseActions id={expense.id} />
             </TableCell>
           </TableRow>
         ))}
