@@ -13,11 +13,6 @@ export const dashboardLinks = [
   },
   {
     id: 2,
-    name: "Budget",
-    href: "/dashboard/budget",
-  },
-  {
-    id: 3,
     name: "Expenses",
     href: "/dashboard/expenses",
   },

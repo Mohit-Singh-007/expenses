@@ -186,15 +186,59 @@ export async function getUserIncome(userId: string) {
   return userIncome;
 }
 
+export async function getIncomeById(userId: string, incomeId: string) {
+  const data = await prisma.income.findUnique({
+    where: {
+      id: incomeId,
+      userId: userId,
+    },
+    select: {
+      id: true,
+      source: true,
+      incomeMoney: true,
+      date: true,
+    },
+  });
+  if (!data) {
+    return notFound();
+  }
+  return data;
+}
+
+export async function editIncome(prevState: unknown, formData: FormData) {
+  const session = await auth();
+
+  const submission = parseWithZod(formData, {
+    schema: incomeSchema,
+  });
+
+  if (submission.status !== "success") {
+    return submission.reply();
+  }
+
+  await prisma.income.update({
+    where: {
+      id: formData.get("id") as string,
+      userId: session?.user?.id,
+    },
+    data: {
+      incomeMoney: submission.value.incomeMoney,
+      source: submission.value.source,
+      date: submission.value.date, // string
+      notes: submission.value.notes,
+    },
+  });
+  return redirect("/dashboard/income");
+}
+
 export async function deleteUserIncome(incomeId: string) {
   const session = await auth();
-  if (!session?.user) {
-    throw new Error("Unauthorized user");
-  }
 
   await prisma.income.delete({
     where: {
       id: incomeId,
+      userId: session?.user?.id,
     },
   });
+  return redirect("/dashboard/income");
 }

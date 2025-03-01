@@ -49,7 +49,7 @@ export default async function IncomeList({ income }: { income: iIncome[] }) {
             </TableCell>
             <TableCell>{inc.incomeMoney}</TableCell>
             <TableCell className="text-right">
-              <IncomeAction />
+              <IncomeAction id={inc.id} />
             </TableCell>
           </TableRow>
         ))}

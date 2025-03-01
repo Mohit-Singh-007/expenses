@@ -21,3 +21,16 @@ export interface iEditExpense {
   username: string;
   email: string;
 }
+
+export interface iEditIncome {
+  id: string;
+  date: Date;
+  source:
+    | "SALARY"
+    | "FREELANCE"
+    | "BUSINESS"
+    | "INVESTMENT"
+    | "GIFTS"
+    | "OTHERS";
+  incomeMoney: number;
+}

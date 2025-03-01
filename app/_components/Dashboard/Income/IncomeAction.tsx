@@ -8,7 +8,7 @@ import {
 import { MoreHorizontal, Pencil, Trash } from "lucide-react";
 import Link from "next/link";
 
-export default function IncomeAction() {
+export default function IncomeAction({ id }: { id: string }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -19,11 +19,11 @@ export default function IncomeAction() {
       <DropdownMenuContent align="end">
         <DropdownMenuItem>
           <Pencil className="size-4 mr-2" />
-          <Link href={"/dashboard/income/edit"}>Edit</Link>
+          <Link href={`/dashboard/income/${id}`}>Edit</Link>
         </DropdownMenuItem>
         <DropdownMenuItem>
           <Trash className="size-4 mr-2" />
-          <Link href={"/dashboard/income/delete"}>Delete</Link>
+          <Link href={`/dashboard/income/${id}/delete`}>Delete</Link>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
