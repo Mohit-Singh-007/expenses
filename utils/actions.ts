@@ -128,6 +128,19 @@ export async function editExpense(prevState: unknown, formData: FormData) {
   return redirect("/dashboard/expenses");
 }
 
+export async function deleteExpense(expenseId: string) {
+  const session = await auth();
+
+  await prisma.expense.delete({
+    where: {
+      id: expenseId,
+      userId: session?.user?.id,
+    },
+  });
+
+  return redirect("/dashboard/expenses");
+}
+
 export async function createIncome(prevState: unknown, formData: FormData) {
   const session = await auth();
   if (!session?.user) {

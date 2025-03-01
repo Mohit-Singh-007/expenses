@@ -27,7 +27,7 @@ export default function ExpenseActions({ id }: iAppProps) {
         </DropdownMenuItem>
         <DropdownMenuItem>
           <Trash className="size-4 mr-2" />
-          <Link href={""}>Delete</Link>
+          <Link href={`/dashboard/expenses/${id}/delete`}>Delete</Link>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
