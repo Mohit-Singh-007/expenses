@@ -7,6 +7,7 @@ export default async function page() {
   const data = await getUserDetail(session?.user?.id as string);
   return (
     <div className="mt-10">
+      
       <ExpenseForm name={data?.name as string} email={data?.email as string} />
     </div>
   );

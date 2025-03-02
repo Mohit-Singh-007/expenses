@@ -127,7 +127,6 @@ export default function ExpenseForm({ email, name }: iDetails) {
                   name={fields.username.name}
                   key={fields.username.key}
                   defaultValue={name}
-                  disabled
                   placeholder="Username..."
                 />
                 <p className=" text-sm text-red-400 ">
@@ -137,7 +136,6 @@ export default function ExpenseForm({ email, name }: iDetails) {
                 <Input
                   name={fields.email.name}
                   defaultValue={email}
-                  disabled
                   key={fields.email.key}
                   placeholder="Email..."
                 />

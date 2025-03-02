@@ -16,7 +16,7 @@ export default function IncomeDialog() {
       <DialogTrigger asChild>
         <Button variant="default" className="flex items-center gap-2">
           <PlusCircleIcon className="size-5" />
-          Add Income
+          Income
         </Button>
       </DialogTrigger>
       <DialogContent>
