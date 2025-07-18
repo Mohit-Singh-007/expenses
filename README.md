@@ -1,6 +1,6 @@
 # 💸 Expense Tracker
 
-A simple and intuitive expense tracking app built with **Next.js** and **Typescript**. Add, edit, delete, and view your daily expenses—all in one lightweight interface.
+A simple and intuitive expense tracking app built with **Next.js** and **TypeScript**. Add, edit, delete, and view your daily expenses — all in one lightweight interface.
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/Mohit-Singh-007/expenses)
 ![License](https://img.shields.io/github/license/Mohit-Singh-007/expenses)
@@ -9,45 +9,64 @@ A simple and intuitive expense tracking app built with **Next.js** and **Typescr
 
 ## 🚀 Features
 
-- 📌 Add new expenses
-- 🧾 Edit and delete existing entries
-- 📊 View a list of all recorded expenses
-- 🧹 Clean, responsive design with user-friendly UX
+* 📌 Add new expenses
+* ✏️ Edit and delete existing entries
+* 📊 View a list of all recorded expenses
+* 📱 Responsive design with clean UI and smooth UX
 
 ---
 
+## 🛠️ Tech Stack
 
-### 🚀 Getting Started
+* ⚛️ Next.js
+* 🔐 TypeScript
+* 💅 Tailwind CSS
+* 📂 Local state with React hooks
+* 🧪 Conform + Zod for form handling
 
-### 📦 Clone the Repository
+---
+
+## 📦 Getting Started
+
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/Mohit-Singh-007/expenses.git
 cd expenses
+```
 
+### 2. Install Dependencies
 
-1. Install Dependencies
+```bash
 npm install
+```
 
-2. Run Locally
-npm start
+### 3. Run the App
 
-The app will run at http://localhost:3000.
+```bash
+npm run dev
+```
+
+Now visit: [http://localhost:3000](http://localhost:3000)
 
 ---
 
+## 📷 Preview
 
+<!-- Replace with your actual image -->
 
-📷 Preview
-<!-- Add your image in `assets/preview.png` -->
+![App Preview](assets/preview.png)
 
-🧾 License
-This project is licensed under the MIT License.
+---
 
-🙋‍♂️ Author
-Made with ❤️ by Mohit Singh
+## 🧾 License
 
-If you found this project useful, consider giving it a ⭐!
+This project is licensed under the [MIT License](./LICENSE).
 
+---
 
+## 🙋‍♂️ Author
 
+Made with ❤️ by [Mohit Singh](https://github.com/Mohit-Singh-007)
+
+If you found this project helpful, feel free to ⭐ the repo!
