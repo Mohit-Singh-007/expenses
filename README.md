@@ -54,8 +54,8 @@ Now visit: [http://localhost:3000](http://localhost:3000)
 ## 📷 Preview
 
 
-![App Preview](assets/expense-home.png)
-![App Preview](assets/expense-auth.png)
+![App Preview](assets/expense-home.png) ![App Preview](assets/expense-auth.png)
+
 ![App Preview](assets/expense-dashboard.png)
 
 ---
