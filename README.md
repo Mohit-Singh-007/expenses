@@ -1,6 +1,6 @@
 # 💸 Expense Tracker
 
-A simple and intuitive expense tracking app built with **React** and **React Hook Form**. Add, edit, delete, and view your daily expenses—all in one lightweight interface.
+A simple and intuitive expense tracking app built with **Next.js** and **Typescript**. Add, edit, delete, and view your daily expenses—all in one lightweight interface.
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/Mohit-Singh-007/expenses)
 ![License](https://img.shields.io/github/license/Mohit-Singh-007/expenses)
@@ -31,9 +31,15 @@ npm install
 
 2. Run Locally
 npm start
+
 The app will run at http://localhost:3000.
 
+---
 
+
+
+📷 Preview
+<!-- Add your image in `assets/preview.png` -->
 
 🧾 License
 This project is licensed under the MIT License.
@@ -41,4 +47,7 @@ This project is licensed under the MIT License.
 🙋‍♂️ Author
 Made with ❤️ by Mohit Singh
 
-Feel free to ⭐ the repo if you found it useful!
+If you found this project useful, consider giving it a ⭐!
+
+
+
