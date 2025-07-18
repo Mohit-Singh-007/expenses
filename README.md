@@ -16,13 +16,15 @@ A simple and intuitive expense tracking app built with **React** and **React Hoo
 
 ---
 
-## 🧑‍💻 Getting Started
 
-0. Clone the Repository
+### 🚀 Getting Started
 
-bash
+### 📦 Clone the Repository
+
+```bash
 git clone https://github.com/Mohit-Singh-007/expenses.git
 cd expenses
+
 
 1. Install Dependencies
 npm install
